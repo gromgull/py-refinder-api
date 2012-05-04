@@ -1,0 +1,8 @@
+This is a Python API for Refinder: http://getrefinder.com
+
+The API requires oauth2 and rdflib 
+
+example_app contains a simple Flask Webapp that lets you log in with your Refinder account and do basic searches. 
+
+
+

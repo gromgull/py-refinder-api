@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>asd</title>
+  <style>
+	.flashes { border: 1px solid grey; }
+  </style>
+</head>
+<body>
+Hello!
+
+<a href="/login">Login with Refinder</a> - 
+<a href="/logout">Logout</a>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block body %}
+{% endblock %} 
+
+</body>

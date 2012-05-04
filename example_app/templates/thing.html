@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<h1>{{t.label}}</h1>
+
+<a href="{{t.identifier}}">{{t.identifier}}</a>
+
+<h2>RDF</h2>
+<table>
+{% for triple in t.graph %}
+<tr>
+<td>
+{% if triple[0].startswith("http") %}
+  <a href="{{url_for('thing', uri=triple[0])}}">{{triple[0]}}</a>
+{% else %}
+{{triple[0]}}
+{% endif %}
+</td>
+<td>
+{{t.graph.namespace_manager.qname(triple[1])}}
+</td>
+<td>
+{% if triple[2].startswith("http") %}
+  <a href="{{url_for('thing', uri=triple[2])}}">{{triple[2]}}</a>
+{% else %}
+{{triple[2]}}
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}

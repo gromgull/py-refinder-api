@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<p>Welcome {{user}}! You are logged in.</p>
+
+<div>
+Search:
+<form action="/search"> 
+  <input type="text" name="q" />
+  <input type="submit" />
+</form>
+</div>
+
+
+{% if results %}
+<h2>Search Results for '{{q}}'</h2>
+    <ul >
+    {% for i in results %}
+    <li><a href="{{i.uri}}">{{ i.label }}</a> <a href="{{url_for('thing', uri=i.identifier)}}">get</a> <a href="/text?uri={{i.uri|urlencode}}">text</a> -- {{i.description}}
+	  <pre>{{ i.graph.serialize(format='n3').decode("utf8") }} </pre>
+	</li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% endblock %} 
+
+
